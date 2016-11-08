@@ -5,27 +5,25 @@ import akka.actor.UntypedActor;
 import akka.actor.ActorRef;
 
 /**
- * This class is responsible for creating the "dart-throwing" actors.
- * It is also responsible for averaging the results of the Dart actors.
+ * This class creates counters and sums their sums
  */
 public class World extends UntypedActor {
 
-    // Sum of the Dart Actor results.
+    // Sum of the Counter Actor results.
     private static double sum = 0.0;
     // Keep track of actors still going.
     private static Integer actorsLeft = Config.ACTOR_COUNT;
 
     /**
-     * Calculate the "average of the averages".
-     * Each Dart actor approximates pi. This function takes those results
-     * and averages them to get a *hopefully* better approximation of pi.
+     * Calculate the sum.
+     * Each counter sums the number from its own partion, so this sums everything.
      */
     public void onReceive(Object msg) {
         if (msg != null) {
-            sum += (Float) msg;
+            sum += (int) msg;
             actorsLeft--;
             if (actorsLeft <= 0) {
-                System.out.println(sum / (double) Config.ACTOR_COUNT);
+                System.out.println(sum);
                 getContext().stop(getSelf());
             }
         } else {
@@ -34,20 +32,18 @@ public class World extends UntypedActor {
     }
     
     /**
-     * Initializes a number of darts and tells the Dart actors
-     * and tells them to start computing.
+     * Initializes a number of actors (ACTOR_COUNT)
      */
     @Override
     public void preStart() {
         for (int i = 0; i < Config.ACTOR_COUNT; i++) {
-            final ActorRef dart = getContext()
+            final ActorRef counter = getContext()
                 .actorOf(
-                    Props.create(Dart.class), 
-                    "dart" + Integer.toString(i));
-            // The choice of "0" is used, but anything non-null would
-            // work. (If it were null, the Dart actor would die before
-            // it did any work.
-            dart.tell(0, getSelf());
+                    Props.create(Counter.class), 
+                    "counter" + Integer.toString(i));
+            // pass the range to the counters (range doesn't include the LIMIT)
+            Range range = new Range(i*(Config.LIMIT/Config.ACTOR_COUNT), (Config.LIMIT/Config.ACTOR_COUNT));
+            counter.tell(range, getSelf());
         }
     }
 }

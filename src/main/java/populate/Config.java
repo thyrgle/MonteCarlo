@@ -2,9 +2,9 @@ package populate;
 
 /**
  * Global class used to change world parameters.
- * At the moment, you can only change the number of actors
- * in the world.
  */
 public class Config {
     public static int ACTOR_COUNT = 20;
+    public static int LIMIT = 1000; //number you want to sum up to
+    public static int[] NUMBERS = {3, 5}
 }
