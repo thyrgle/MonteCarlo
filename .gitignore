@@ -14,3 +14,6 @@ hs_err_pid*
 # Hide gradle
 .gradle
 build/
+
+# For syntastic, which should be auto generated for anyone who cares.
+.syntastic_javac_config
