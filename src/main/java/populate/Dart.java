@@ -10,16 +10,14 @@ public class Dart extends UntypedActor {
      * (see: https://www.wikiwand.com/en/Monte_Carlo_integration)
      */
     private float approximatePi(int size) {
-        int total = 0; // Keep track of total points thrown.
         int inside = 0; // Keep track of points inside the circle.
         for (int i = 0; i < size; i++) {
             Point d = Point.genRandPoint();
             if (d.x * d.x + d.y * d.y <= 1) {
                 inside += 1;
             }
-            total += 1;
         }
-        return 4 * ((float) inside) / total;
+        return 4 * ((float) inside) / size;
     }
 
     @Override
