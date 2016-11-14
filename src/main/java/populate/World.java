@@ -25,7 +25,7 @@ public class World extends UntypedActor {
             sum += (Float) msg;
             actorsLeft--;
             if (actorsLeft <= 0) {
-                System.out.println(sum / (double) Config.ACTOR_COUNT);
+                System.out.println(sum / Config.ACTOR_COUNT);
                 getContext().stop(getSelf());
             }
         } else {
