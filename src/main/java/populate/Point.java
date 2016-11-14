@@ -11,6 +11,10 @@ public class Point {
         this.y = y;
     }
 
+    /**
+      * Generates a random point in the unit square.
+      * @return a point in the unit square
+      */
     static public Point genRandPoint() {
         return new Point(
                 ThreadLocalRandom
