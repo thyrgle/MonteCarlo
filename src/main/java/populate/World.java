@@ -19,12 +19,13 @@ public class World extends UntypedActor {
      * Calculate the "average of the averages".
      * Each Dart actor approximates pi. This function takes those results
      * and averages them to get a *hopefully* better approximation of pi.
+     * TODO: There is almost certainly a better reduction method.
      */
     public void onReceive(Object msg) {
         if (msg != null) {
             sum += (Float) msg;
             actorsLeft--;
-            if (actorsLeft <= 0) {
+            if (actorsLeft == 0) {
                 System.out.println(sum / Config.ACTOR_COUNT);
                 getContext().stop(getSelf());
             }
