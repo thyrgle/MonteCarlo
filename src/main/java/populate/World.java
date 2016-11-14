@@ -22,7 +22,7 @@ public class World extends UntypedActor {
      */
     public void onReceive(Object msg) {
         if (msg != null) {
-            sum += (Float) msg;
+            sum += (double) msg;
             actorsLeft--;
             if (actorsLeft <= 0) {
                 System.out.println(sum / (double) Config.ACTOR_COUNT);
