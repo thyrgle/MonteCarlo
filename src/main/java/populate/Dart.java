@@ -7,7 +7,7 @@ public class Dart extends UntypedActor {
 
     /**
      * Use Monte Carlo integration to approximate pi.
-     * (see: https://www.wikiwand.com/en/Monte_Carlo_integration)
+     * {@link https://www.wikiwand.com/en/Monte_Carlo_integration)}
      */
     private float approximatePi(int size) {
         int inside = 0; // Keep track of points inside the circle.

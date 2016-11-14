@@ -1,9 +1,7 @@
 package populate;
 
 /**
- * Global class used to change world parameters.
- * At the moment, you can only change the number of actors
- * in the world.
+ * Global class used to change world parameters. 
  */
 public class Config {
     public static int ACTOR_COUNT = 20;
