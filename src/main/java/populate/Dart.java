@@ -12,8 +12,8 @@ public class Dart extends UntypedActor {
     private float approximatePi(int size) {
         int inside = 0; // Keep track of points inside the circle.
         for (int i = 0; i < size; i++) {
-            Point d = Point.genRandPoint();
-            if (d.x * d.x + d.y * d.y <= 1) {
+            Point p = Point.genRandPoint();
+            if (p.x * p.x + p.y * p.y <= 1) { // Check if point is inside circle.
                 inside += 1;
             }
         }
